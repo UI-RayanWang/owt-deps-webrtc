@@ -88,6 +88,9 @@ rtc_build_libvpx=true
 rtc_libvpx_build_vp9=true
 rtc_build_opus=true
 rtc_include_opus=true
+
+target_os=linux
+target_cpu=arm64
 "
 
 fi

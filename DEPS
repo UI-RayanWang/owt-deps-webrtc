@@ -354,7 +354,7 @@ hooks = [
     # official chrome builds or cross compiling.
     'name': 'sysroot',
     'pattern': '.',
-    'action': ['python', 'src/build/linux/sysroot_scripts/install-sysroot.py',
+    'action': ['python', 'src/build/linux/sysroot_scripts/install-sysroot.py --arch=arm64',
                '--running-as-hook'],
   },
   {
