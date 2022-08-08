@@ -170,38 +170,38 @@ config("common_config") {
     }
   }
 
-  if (current_cpu == "arm64") {
+  # if (current_cpu == "arm64") {
     defines += [ "WEBRTC_ARCH_ARM64" ]
     defines += [ "WEBRTC_HAS_NEON" ]
-  }
+  # }
 
-  if (current_cpu == "arm") {
-    defines += [ "WEBRTC_ARCH_ARM" ]
-    if (arm_version >= 7) {
-      defines += [ "WEBRTC_ARCH_ARM_V7" ]
-      if (arm_use_neon) {
-        defines += [ "WEBRTC_HAS_NEON" ]
-      }
-    }
-  }
+  # if (current_cpu == "arm") {
+  #   defines += [ "WEBRTC_ARCH_ARM" ]
+  #   if (arm_version >= 7) {
+  #     defines += [ "WEBRTC_ARCH_ARM_V7" ]
+  #     if (arm_use_neon) {
+  #       defines += [ "WEBRTC_HAS_NEON" ]
+  #     }
+  #   }
+  # }
 
-  if (current_cpu == "mipsel") {
-    defines += [ "MIPS32_LE" ]
-    if (mips_float_abi == "hard") {
-      defines += [ "MIPS_FPU_LE" ]
-    }
-    if (mips_arch_variant == "r2") {
-      defines += [ "MIPS32_R2_LE" ]
-    }
-    if (mips_dsp_rev == 1) {
-      defines += [ "MIPS_DSP_R1_LE" ]
-    } else if (mips_dsp_rev == 2) {
-      defines += [
-        "MIPS_DSP_R1_LE",
-        "MIPS_DSP_R2_LE",
-      ]
-    }
-  }
+  # if (current_cpu == "mipsel") {
+  #   defines += [ "MIPS32_LE" ]
+  #   if (mips_float_abi == "hard") {
+  #     defines += [ "MIPS_FPU_LE" ]
+  #   }
+  #   if (mips_arch_variant == "r2") {
+  #     defines += [ "MIPS32_R2_LE" ]
+  #   }
+  #   if (mips_dsp_rev == 1) {
+  #     defines += [ "MIPS_DSP_R1_LE" ]
+  #   } else if (mips_dsp_rev == 2) {
+  #     defines += [
+  #       "MIPS_DSP_R1_LE",
+  #       "MIPS_DSP_R2_LE",
+  #     ]
+  #   }
+  # }
 
   if (is_android && !is_clang) {
     # The Android NDK doesn"t provide optimized versions of these

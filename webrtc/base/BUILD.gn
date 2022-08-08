@@ -278,11 +278,11 @@ rtc_static_library("rtc_base_approved") {
       "$root_out_dir/ucrtbase${vcrt_suffix}.dll",
     ]
     if (is_asan) {
-      if (current_cpu == "x64") {
-        data += [ "$clang_base_path/lib/clang/$clang_version/lib/windows/clang_rt.asan_dynamic-x86_64.dll" ]
-      } else {
+      # if (current_cpu == "x64") {
+      #   data += [ "$clang_base_path/lib/clang/$clang_version/lib/windows/clang_rt.asan_dynamic-x86_64.dll" ]
+      # } else {
         data += [ "$clang_base_path/lib/clang/$clang_version/lib/windows/clang_rt.asan_dynamic-i386.dll" ]
-      }
+      # }
     }
   }
   if (is_nacl) {

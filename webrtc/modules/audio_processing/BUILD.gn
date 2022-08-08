@@ -272,9 +272,9 @@ rtc_static_library("audio_processing") {
     defines += [ "WEBRTC_NS_FLOAT" ]
   }
 
-  if (current_cpu == "x86" || current_cpu == "x64") {
-    deps += [ ":audio_processing_sse2" ]
-  }
+  # if (current_cpu == "x86" || current_cpu == "x64") {
+  #   deps += [ ":audio_processing_sse2" ]
+  # }
 
   if (rtc_build_with_neon) {
     deps += [ ":audio_processing_neon" ]
@@ -358,29 +358,29 @@ if (rtc_enable_protobuf) {
   }
 }
 
-if (current_cpu == "x86" || current_cpu == "x64") {
-  rtc_static_library("audio_processing_sse2") {
-    # TODO(ehmaldonado): Remove (bugs.webrtc.org/6828)
-    # Errors on cyclic dependency with :audio_processing if enabled.
-    check_includes = false
+# if (current_cpu == "x86" || current_cpu == "x64") {
+#   rtc_static_library("audio_processing_sse2") {
+#     # TODO(ehmaldonado): Remove (bugs.webrtc.org/6828)
+#     # Errors on cyclic dependency with :audio_processing if enabled.
+#     check_includes = false
 
-    sources = [
-      "aec/aec_core_sse2.cc",
-      "utility/ooura_fft_sse2.cc",
-      "utility/ooura_fft_tables_neon_sse2.h",
-    ]
+#     sources = [
+#       "aec/aec_core_sse2.cc",
+#       "utility/ooura_fft_sse2.cc",
+#       "utility/ooura_fft_tables_neon_sse2.h",
+#     ]
 
-    if (is_posix) {
-      cflags = [ "-msse2" ]
-    }
+#     if (is_posix) {
+#       cflags = [ "-msse2" ]
+#     }
 
-    if (apm_debug_dump) {
-      defines = [ "WEBRTC_APM_DEBUG_DUMP=1" ]
-    } else {
-      defines = [ "WEBRTC_APM_DEBUG_DUMP=0" ]
-    }
-  }
-}
+#     if (apm_debug_dump) {
+#       defines = [ "WEBRTC_APM_DEBUG_DUMP=1" ]
+#     } else {
+#       defines = [ "WEBRTC_APM_DEBUG_DUMP=0" ]
+#     }
+#   }
+# }
 
 if (rtc_build_with_neon) {
   rtc_static_library("audio_processing_neon") {
@@ -395,13 +395,13 @@ if (rtc_build_with_neon) {
       "utility/ooura_fft_tables_neon_sse2.h",
     ]
 
-    if (current_cpu != "arm64") {
-      # Enable compilation for the NEON instruction set. This is needed
-      # since //build/config/arm.gni only enables NEON for iOS, not Android.
-      # This provides the same functionality as webrtc/build/arm_neon.gypi.
-      suppressed_configs += [ "//build/config/compiler:compiler_arm_fpu" ]
-      cflags = [ "-mfpu=neon" ]
-    }
+    # if (current_cpu != "arm64") {
+    #   # Enable compilation for the NEON instruction set. This is needed
+    #   # since //build/config/arm.gni only enables NEON for iOS, not Android.
+    #   # This provides the same functionality as webrtc/build/arm_neon.gypi.
+    #   suppressed_configs += [ "//build/config/compiler:compiler_arm_fpu" ]
+    #   cflags = [ "-mfpu=neon" ]
+    # }
 
     # Disable LTO on NEON targets due to compiler bug.
     # TODO(fdegans): Enable this. See crbug.com/408997.
@@ -435,13 +435,13 @@ if (rtc_build_with_neon) {
       "ns/nsx_core_neon.c",
     ]
 
-    if (current_cpu != "arm64") {
-      # Enable compilation for the NEON instruction set. This is needed
-      # since //build/config/arm.gni only enables NEON for iOS, not Android.
-      # This provides the same functionality as webrtc/build/arm_neon.gypi.
-      suppressed_configs += [ "//build/config/compiler:compiler_arm_fpu" ]
-      cflags = [ "-mfpu=neon" ]
-    }
+    # if (current_cpu != "arm64") {
+    #   # Enable compilation for the NEON instruction set. This is needed
+    #   # since //build/config/arm.gni only enables NEON for iOS, not Android.
+    #   # This provides the same functionality as webrtc/build/arm_neon.gypi.
+    #   suppressed_configs += [ "//build/config/compiler:compiler_arm_fpu" ]
+    #   cflags = [ "-mfpu=neon" ]
+    # }
 
     # Disable LTO on NEON targets due to compiler bug.
     # TODO(fdegans): Enable this. See crbug.com/408997.

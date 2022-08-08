@@ -116,9 +116,9 @@ declare_args() {
     rtc_build_libevent = true
   }
 
-  if (current_cpu == "arm" || current_cpu == "arm64") {
+  # if (current_cpu == "arm" || current_cpu == "arm64") {
     rtc_prefer_fixed_point = true
-  }
+  # }
 
   if (!is_ios && (current_cpu != "arm" || arm_version >= 7) &&
       current_cpu != "mips64el") {
@@ -128,8 +128,8 @@ declare_args() {
   }
 
   # Determines whether NEON code will be built.
-  rtc_build_with_neon =
-      (current_cpu == "arm" && arm_use_neon) || current_cpu == "arm64"
+  rtc_build_with_neon = true
+      # (current_cpu == "arm" && arm_use_neon) || current_cpu == "arm64"
 
   # Enable this to build OpenH264 encoder/FFmpeg decoder. This is supported on
   # all platforms except Android and iOS. Because FFmpeg can be built

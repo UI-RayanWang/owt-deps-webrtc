@@ -9,7 +9,7 @@
 import("//build/config/ui.gni")
 import("../../webrtc.gni")
 
-use_desktop_capture_differ_sse2 = current_cpu == "x86" || current_cpu == "x64"
+use_desktop_capture_differ_sse2 = false #current_cpu == "x86" || current_cpu == "x64"
 
 rtc_static_library("primitives") {
   sources = [
